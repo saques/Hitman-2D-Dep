@@ -10,7 +10,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
-
+/**
+ * La vieja clase ControlHandler, que ahora se ocupa mas puramente 
+ * de cuestiones vinculadas con el input
+ * @author traies
+ * @author masaques
+ *
+ */
 class ControlProcessor implements InputProcessor {
 	private static int MOVE_LEFT = 0;
 	private static int MOVE_UP = 1;

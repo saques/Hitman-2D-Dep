@@ -14,7 +14,14 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
+/**
+ * La clase Game ha sido reducida para que solo se ocupe
+ * de lo visual.
+ * Contiene, ademas, al GameHandler, al cual llama para que 
+ * este actualice todo lo necesario.
+ * @author traies
+ * @author masaques
+ */
 public class Game extends ApplicationAdapter {
 	Texture img;
 	TiledMap tiled_map;

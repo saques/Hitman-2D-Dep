@@ -1,7 +1,12 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-
+/**
+ * Clase que recibe datos del ControlProcessor acerca de lo que hizo el jugador y,
+ * en base a esto, actualiza el modelo.
+ * @author masaques
+ *
+ */
 public class PlayerHandler {
 	private ControlProcessor control;
 	private Player player;

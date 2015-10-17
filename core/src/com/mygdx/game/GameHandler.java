@@ -7,7 +7,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
+/**
+ * Esta clase es una modularizacion del contenido previo de Game
+ * Es quien contiene el mapa y todos los personajes, como asi a los diferentes 
+ * handlers para administrarlos
+ * Se ocupa de actualizar el modelo y, luego, de actualizar la vista, tal como
+ * dice MVC
+ * @author masaques
+ * @author traies
+ */
 public class GameHandler {
 	
 	protected static final int MAX_SEARCH = 100 ;
