@@ -13,12 +13,13 @@ public abstract class NPC extends Character {
 	protected  Path currentPath;
 	protected Step finalStep;
 	protected Step currentStep = null;
-	protected PathFinder aStarPathFinder;
-	protected PathFinder linearPathFinder;
-	
+	private PathFinder aStarPathFinder;
+	private PathFinder linearPathFinder;
+	private Context context;
 	
 	public NPC (Rectangle hitBox, LevelMap map, CharacterView model){
 		super(hitBox, map, model);
+		context = new Context();
 	}
 	public void setAStarPathFinder(PathFinder pathFinder){
 		this.aStarPathFinder = pathFinder;
@@ -61,10 +62,16 @@ public abstract class NPC extends Character {
 			}
 		}
 		if (isMoving){
+			/*
+			 * Ineficiente? Probablemete, pero me soluciona la vida por ahora. (Tiene que hacer una raiz cuadrada por frame) 
+			 */
 			move(currentStep.getPosition().sub(getPosition()));
 		}
 		super.update();	
 	}
 	
+	public void addToContext(Noise n){
+		context.add(n);
+	}
 
 }

@@ -1,6 +1,8 @@
 
 package com.mygdx.game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,11 +12,16 @@ import java.util.Set;
  *
  */
 
-public class NoiseHandler {
-	private Set<NPC> npc_set ;
+public class NoiseHandler implements Handler{
 	
-	public NoiseHandler(Set<NPC> npc_set){
+	private Set<NPC> npc_set ;
+	private List<Noise> noiseList;
+	private PathFinder pathFinder;
+	
+	public NoiseHandler(Set<NPC> npc_set, PathFinder pathFinder){
 		this.npc_set = npc_set ;
+		this.noiseList = new ArrayList<Noise>();
+		this.pathFinder = pathFinder;
 	}
 	
 	/**
@@ -27,10 +34,9 @@ public class NoiseHandler {
 			warnAll(noise);
 		}
 		for (NPC npc : npc_set){
-			if (npc.getPosition().dst(noise.getSource())<= noise.getRange()){
-				if (!noise.getEmitter().getClass().isInstance(npc)) {
-					npc.moveTo(noise.getSource());
-				}
+			Path noisePath = pathFinder.findPath(npc, npc.getPosition(), noise.getSource());
+			if (noisePath!= null) {
+				npc.addToContext(noise);
 			}
 		}
 	}
@@ -43,7 +49,31 @@ public class NoiseHandler {
 	 */
 	private void warnAll(Noise noise){
 		for (NPC npc : npc_set){
-			npc.moveTo(noise.getSource());
+			npc.addToContext(noise);
 		}
 	}
+	
+	/*
+	 * TODO: aca puse que catchee todas las excepciones porque no se como se llama la 
+	 * excepcion de error de casteo.
+	 */
+	@Override
+	public void send (Message message) throws WrongMessageException{
+		try {
+			noiseList.add((Noise) message);
+		}
+		catch(Exception e) {
+			throw new WrongMessageException();
+		}
+	}
+	@Override
+	public void handle() {
+		List<Noise> removeList = new ArrayList<Noise>();
+		for (Noise n: noiseList) {
+			warn(n);
+			removeList.add(n);
+		}
+		noiseList.removeAll(removeList);
+	}
+	
 }
