@@ -28,7 +28,7 @@ public class Game extends ApplicationAdapter {
 	OrthographicCamera camera;
 	OrthogonalTiledMapRenderer renderer;
 	FPSLogger fps_logger;
-	GameHandler game_handler ;
+	GameManager game_handler ;
 	
 	@Override
 	public void create () {
@@ -40,7 +40,7 @@ public class Game extends ApplicationAdapter {
 		tiled_map = new TmxMapLoader().load("assets/test5.tmx");
 		renderer = new OrthogonalTiledMapRenderer(tiled_map);
 		fps_logger = new FPSLogger();
-		game_handler = new GameHandler(tiled_map,width,height,32,20) ;
+		game_handler = new GameManager(tiled_map,width,height,32,20) ;
 		
 	}
 

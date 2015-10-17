@@ -16,7 +16,7 @@ import com.badlogic.gdx.math.Vector2;
  * @author masaques
  * @author traies
  */
-public class GameHandler {
+public class GameManager {
 	
 	protected static final int MAX_SEARCH = 100 ;
 	LevelMap map ;
@@ -25,12 +25,12 @@ public class GameHandler {
 	PathFinder path_finder;
 	
 	Player player;
-	PlayerHandler player_handler ;
+	PlayerManager player_handler ;
 	CharacterView player_view;
 	Set<Goon> goon_set = new HashSet<Goon>();
 	Set<CharacterView> goon_view_set = new HashSet<CharacterView>();
 
-	public GameHandler(TiledMap tiled_map,int width,int height,int tile_width,int goons){
+	public GameManager(TiledMap tiled_map,int width,int height,int tile_width,int goons){
 		LevelMap map = new LevelMap(width,height, tile_width,tiled_map);
 		PathFinder path_finder = new PathFinder(map, MAX_SEARCH);
 		for(int i=0; i< goons; i++){		
@@ -47,12 +47,12 @@ public class GameHandler {
 		 */
 		player_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
 		player = new Player(new Rectangle(50,50,18,13),map, player_view);
-		player_handler = new PlayerHandler(player) ;
+		player_handler = new PlayerManager(player) ;
 		player_view.setPlayer(player) ;
 	}
 	
 	public void updateModel(){
-		player_handler.handle();
+		player_handler.manage();
 		player.update();
 		for (Goon g : goon_set){
 			g.update();
