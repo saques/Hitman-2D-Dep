@@ -24,7 +24,8 @@ public class PathFinder {
 		
 	}
 	
-	public Path findPath(Movable movable, Vector2 startPosition, Vector2 finalPosition) {
+	public Path findPath(Vector2 startPosition, Vector2 finalPosition) {
+		
 		
 		int sx = Math.round(startPosition.x) / map.getTileWidth();
 	    int sy = Math.round(startPosition.y) / map.getTileWidth();
@@ -91,28 +92,23 @@ public class PathFinder {
 	    	return null;
 	    }
 	    Path path = new Path();
-	    
+
 	    Node target = nodes[tx][ty];
 	    Vector2 stepPosition = new Vector2();
 	    path.prependStep(finalPosition);
 	    while (target != nodes[sx][sy]){
-	    	stepPosition = getStepCorrection(movable,target);
-	    	path.prependStep(stepPosition);
-	    	target = target.getParent(); 	
+	    	stepPosition = getStepPosition(target);
+	    	path.prependStep(tileCorrection(stepPosition));
+	    	target = target.getParent();
 	    }
+	    
 	    return path;  
 	}
-	
-	/*
-	 * Metodo privado que sirve para corregir la posicion de los nodos. Necesita una 
-	 * referencia al objeto que se quiere mover.
-	 */
-	
-	private Vector2 getStepCorrection(Movable movable, Node node) {
-		float tileWidth = map.getTileWidth();
-		float xPosition = node.getX() * tileWidth + tileWidth / 2f - movable.getWidth() / 2;
-		float yPosition = node.getY() * tileWidth + tileWidth / 2f - movable.getHeight() / 2; 
-		return new Vector2( xPosition, yPosition );
+	private Vector2 getStepPosition(Node target) {
+		float stepX, stepY;
+		stepX = target.getX() * map.getTileWidth() - 8.5f;
+		stepY = target.getY() * map.getTileWidth() - 7f;
+		return new Vector2 (stepX,stepY);
 	}
 	private int manhattanDistance(int x, int y, int xp, int yp){
 		return Math.abs(xp - x) + Math.abs(yp -y);
@@ -124,6 +120,12 @@ public class PathFinder {
 				n.looseParent();
 			}
 		}
+	}
+	/*
+	 * Metodo de correccion para que el camino este centrado
+	 */
+	private Vector2 tileCorrection(Vector2 position){
+		return position.add(map.getTileWidth()/2,map.getTileWidth()/2);
 	}
 	private class Node implements Comparable <Node>{
 		private int x;

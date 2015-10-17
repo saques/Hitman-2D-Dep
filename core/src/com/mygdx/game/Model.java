@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class CharacterView {
+public class Model {
 	Character character;
 	SpriteBatch batch;
 	Texture texture;
@@ -17,7 +17,9 @@ public class CharacterView {
 	TextureRegion currentFrame;
 	float stateTime;
 	
-	public CharacterView(String sprite_path,int sprite_width,int spriteLength, int animation_length){
+	//"assets/hitman_straight_walk_x2.png"
+	
+	public Model(String sprite_path,int sprite_width,int spriteLength, int animation_length){
 		
 		batch = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal(sprite_path));
@@ -35,6 +37,11 @@ public class CharacterView {
 	public void draw(){
 		currentFrame = walkAnimation.getKeyFrame(stateTime, true);
 		batch.begin();
+//		if (((Goon)character).currentPath != null){
+//			for (Step s: ((Goon)character).currentPath.steps){
+//				batch.draw(currentFrame, s.getPosition().x,s.getPosition().y);
+//			}
+//		}
 		float rotation = character.getDirection().angle() + 90f;
 		batch.draw(currentFrame, character.getPosition().x, character.getPosition().y, 9f, 6.5f,18f,13f, 1f,1f, rotation);
 		batch.end();

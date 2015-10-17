@@ -55,11 +55,11 @@ class ControlHandler implements InputProcessor {
 		else {
 			player.stopMoving();
 		}
-		if (mouse_click){
-			mouse_click = false;
-			for(Goon g: goonSet)
-				g.moveTo(new Vector2(mouse_x,864- mouse_y));
-		}
+//		if (mouse_click){
+//			mouse_click = false;
+//			for(Goon g: goonSet)
+//				g.moveTo(new Vector2(mouse_x,864- mouse_y));
+//		}
 	}
 	
 	

@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Goon extends NPC {
 	
-	public Goon(Rectangle hitBox, LevelMap map, CharacterView model){
+	public Goon(Rectangle hitBox, LevelMap map, Model model){
 		super(hitBox, map,model);
 	}
 

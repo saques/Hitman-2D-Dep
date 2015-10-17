@@ -12,8 +12,6 @@ import com.badlogic.gdx.math.Vector2;
 public interface Movable {
 	Vector2 getPosition();
 	Vector2 getDirection();
-	float getWidth();
-	float getHeight();
 	boolean move(Vector2 direction);
 	void update();
 }
