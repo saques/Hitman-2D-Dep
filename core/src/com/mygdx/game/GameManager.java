@@ -56,6 +56,12 @@ public class GameManager {
 	}
 	
 	public void updateModel(){
+		try{
+			postOffice.manage();
+		}
+		catch(WrongMessageException e){
+			System.out.println("Wrong Message");
+		}
 		player_handler.manage();
 		player.update();
 		for (NPC g : goon_set){
