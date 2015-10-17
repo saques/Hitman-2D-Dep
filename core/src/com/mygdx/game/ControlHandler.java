@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -59,11 +58,9 @@ class ControlHandler implements InputProcessor {
 		if (mouse_click){
 			mouse_click = false;
 			for(Goon g: goonSet)
-				g.moveTo(new Vector2(mouse_x,mouse_y));
+				g.moveTo(new Vector2(mouse_x,864- mouse_y));
 		}
 	}
-	
-	
 	
 	
 	@Override
@@ -112,7 +109,7 @@ class ControlHandler implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
     	mouse_click = true;
     	mouse_x = screenX;
-    	mouse_y = 864-screenY;
+    	mouse_y = screenY;
         return false;
     	
     }

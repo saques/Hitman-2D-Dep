@@ -50,9 +50,9 @@ public class GameHandler {
 	}
 	
 	public void updateView() {
-		player_view.draw();
+        player_view.draw();
         for (CharacterView gm:goon_view_set){
-        	gm.draw();
+			gm.draw();
 		}
 	}
 
