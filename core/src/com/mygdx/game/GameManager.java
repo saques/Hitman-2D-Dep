@@ -24,7 +24,7 @@ public class GameManager {
 	CharacterView goon_view;
 	PathFinder path_finder;
 	Player player;
-	PlayerManager player_handler ;
+	PlayerManager player_manager ;
 	CharacterView player_view;
 	Set<NPC> goon_set = new HashSet<NPC>();
 	Set<CharacterView> goon_view_set = new HashSet<CharacterView>();
@@ -44,7 +44,7 @@ public class GameManager {
 		}
 		player_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
 		player = new Player(new Rectangle(50,50,18,13),map);
-		player_handler = new PlayerManager(player) ;
+		player_manager = new PlayerManager(player) ;
 		player_view.setPlayer(player) ;
 		NoiseHandler noiseHandler = new NoiseHandler(goon_set, path_finder);
 		postOffice.setNoiseHandler(noiseHandler);
@@ -57,7 +57,7 @@ public class GameManager {
 		catch(WrongMessageException e){
 			System.out.println("Wrong Message");
 		}
-		player_handler.manage();
+		player_manager.manage();
 		player.update();
 		for (NPC g : goon_set){
 			g.update();
