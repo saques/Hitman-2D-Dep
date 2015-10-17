@@ -33,6 +33,9 @@ public class CharacterView {
 		this.character = character;
 	}
 	public void draw(){
+		if (character.isMoving){
+			update() ;
+		}
 		currentFrame = walkAnimation.getKeyFrame(stateTime, true);
 		batch.begin();
 		float rotation = character.getDirection().angle() + 90f;

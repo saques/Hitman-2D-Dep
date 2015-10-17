@@ -37,7 +37,7 @@ public class GameManager {
 		PathFinder path_finder = new PathFinder(map, MAX_SEARCH);
 		for(int i=0; i< goons; i++){		
 			goon_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
-			goon = new Goon(new Rectangle(40,40, 18,13),map,goon_view);
+			goon = new Goon(new Rectangle(40,40, 18,13),map);
 			goon.setAStarPathFinder(path_finder);
 			goon_view.setPlayer(goon);
 			goon_view_set.add(goon_view);
@@ -48,7 +48,7 @@ public class GameManager {
 		 * El Modelo en Character solo se usa en una linea, en el metodo update()
 		 */
 		player_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
-		player = new Player(new Rectangle(50,50,18,13),map, player_view);
+		player = new Player(new Rectangle(50,50,18,13),map);
 		player_handler = new PlayerManager(player) ;
 		player_view.setPlayer(player) ;
 		NoiseHandler noiseHandler = new NoiseHandler(goon_set, path_finder);

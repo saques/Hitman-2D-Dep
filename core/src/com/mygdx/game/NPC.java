@@ -17,8 +17,8 @@ public abstract class NPC extends Character {
 	private PathFinder linearPathFinder;
 	private Context context;
 	
-	public NPC (Rectangle hitBox, LevelMap map, CharacterView model){
-		super(hitBox, map, model);
+	public NPC (Rectangle hitBox, LevelMap map){
+		super(hitBox, map);
 		context = new Context();
 	}
 	public void setAStarPathFinder(PathFinder pathFinder){

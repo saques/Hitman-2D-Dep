@@ -20,10 +20,9 @@ public abstract class Character implements Movable {
 	protected boolean running;
 	protected boolean isMoving = false;
 	
-	public Character(Rectangle hitBox, LevelMap map, CharacterView model){
+	public Character(Rectangle hitBox, LevelMap map){
 		this.direction = new Vector2();
 		this.map = map;
-		this.model = model;
 		this.hitBox = hitBox;
 		this.running = false;
 	}
@@ -116,7 +115,6 @@ public abstract class Character implements Movable {
 			}
 		}
 		hitBox.set(currHitBox);
-		model.update();
 		return;
 	}
 	
