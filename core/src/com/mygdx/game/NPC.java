@@ -15,15 +15,15 @@ public abstract class NPC extends Character {
 	protected  Path currentPath;
 	protected Step finalStep;
 	protected Step currentStep = null;
-	private PathFinder aStarPathFinder;
-	private PathFinder linearPathFinder;
+	private AStarPathFinder aStarPathFinder;
+	private AStarPathFinder linearPathFinder;
 	private Context context;
 	
 	public NPC (Rectangle hitBox, LevelMap map){
 		super(hitBox, map);
 		context = new Context();
 	}
-	public void setAStarPathFinder(PathFinder pathFinder){
+	public void setAStarPathFinder(AStarPathFinder pathFinder){
 		this.aStarPathFinder = pathFinder;
 	}
 	

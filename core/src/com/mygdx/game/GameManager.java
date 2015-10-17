@@ -22,7 +22,7 @@ public class GameManager {
 	LevelMap map ;
 	Goon goon;
 	CharacterView goon_view;
-	PathFinder path_finder;
+	AStarPathFinder path_finder;
 	Player player;
 	PlayerManager player_manager ;
 	CharacterView player_view;
@@ -33,7 +33,7 @@ public class GameManager {
 	
 	public GameManager(TiledMap tiled_map,int width,int height,int tile_width,int goons){
 		LevelMap map = new LevelMap(width,height, tile_width,tiled_map);
-		PathFinder path_finder = new PathFinder(map, MAX_SEARCH);
+		AStarPathFinder path_finder = new AStarPathFinder(map, MAX_SEARCH);
 		for(int i=0; i< goons; i++){		
 			goon_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
 			goon = new Goon(new Rectangle(40,40, 18,13),map);

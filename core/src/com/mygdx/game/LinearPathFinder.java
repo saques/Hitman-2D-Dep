@@ -2,7 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class LinearPathFinder {
+public class LinearPathFinder implements PathFinder {
 	private LevelMap map;
 	
 	public LinearPathFinder(LevelMap map) {

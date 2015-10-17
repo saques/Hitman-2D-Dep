@@ -17,9 +17,9 @@ public class NoiseHandler implements Handler{
 	
 	private Set<NPC> npc_set ;
 	private List<Noise> noiseList;
-	private PathFinder pathFinder;
+	private AStarPathFinder pathFinder;
 	
-	public NoiseHandler(Set<NPC> npc_set, PathFinder pathFinder){
+	public NoiseHandler(Set<NPC> npc_set, AStarPathFinder pathFinder){
 		this.npc_set = npc_set ;
 		this.noiseList = new ArrayList<Noise>();
 		this.pathFinder = pathFinder;
