@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
  * TODO : Must add proper behavior in Character-related classes
  * TODO : Shoots must have a distinctive property, causing greater disturbance in NPCs
  * @author masaques
+ * @author traies
  *
  */
 

@@ -23,7 +23,6 @@ public class GameManager {
 	Goon goon;
 	CharacterView goon_view;
 	PathFinder path_finder;
-	
 	Player player;
 	PlayerManager player_handler ;
 	CharacterView player_view;

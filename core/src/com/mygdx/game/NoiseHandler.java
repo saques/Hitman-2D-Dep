@@ -9,6 +9,7 @@ import java.util.Set;
  * WIP
  * Control system for emitted noises
  * @author masaques
+ * @author traies
  *
  */
 
@@ -53,16 +54,12 @@ public class NoiseHandler implements Handler{
 		}
 	}
 	
-	/*
-	 * TODO: aca puse que catchee todas las excepciones porque no se como se llama la 
-	 * excepcion de error de casteo.
-	 */
 	@Override
 	public void send (Message message) throws WrongMessageException{
 		try {
 			noiseList.add((Noise) message);
 		}
-		catch(Exception e) {
+		catch(ClassCastException e) {
 			throw new WrongMessageException();
 		}
 	}

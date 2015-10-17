@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 /**
  * Clase que recibe datos del ControlProcessor acerca de lo que hizo el jugador y,
  * en base a esto, actualiza el modelo.
@@ -10,11 +11,13 @@ import com.badlogic.gdx.Gdx;
 public class PlayerManager {
 	private ControlProcessor control;
 	private Player player;
+	private PostOffice postOffice ;
 	
 	public PlayerManager(Player player){
 		this.player = player ;
 		control = new ControlProcessor() ;
 		Gdx.input.setInputProcessor(control);
+		postOffice = PostOffice.getInstance() ;
 	}
 	
 	public void manage() {
@@ -26,6 +29,11 @@ public class PlayerManager {
 		}
 		else {
 			player.stopMoving();
+		}
+		Vector2 noisePosition = control.getMouseClick() ;
+		if (noisePosition!=null){
+			Message message = new Noise(noisePosition,100, true);
+			postOffice.post(new Post(PostOffice.NOISE, new Timer(0), message));
 		}
 	}
 }

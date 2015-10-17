@@ -56,6 +56,18 @@ class ControlProcessor implements InputProcessor {
 		this.y = 0f;
 		return ans ;
 	}
+	/**
+	 * Devuelve la posicion en la que se hizo click
+	 * @return null si no se hizo click
+	 */
+	public Vector2 getMouseClick(){
+		Vector2 ans = null ;
+		if (mouse_click) {
+			mouse_click = false ;
+			ans= new Vector2((float)mouse_x,(float)mouse_y) ;
+		}
+		return ans ;
+	}
 	
 	
 	@Override
