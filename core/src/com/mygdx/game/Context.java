@@ -8,8 +8,11 @@ package com.mygdx.game;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class Context {
 	private Set<Noise> noiseSet;
+	private Vector2 playerPosition ;
 	
 	public Context() {
 		this.noiseSet = new HashSet<Noise>();
@@ -38,6 +41,10 @@ public class Context {
 		//TODO
 		noiseSet.add(noise);
 		System.out.println("BANG!!!");
+	}
+	
+	public void setPlayerPosition(Vector2 playerPosition) {
+		this.playerPosition = playerPosition ;
 	}
 	public void flush() {
 		noiseSet = new HashSet<Noise>();

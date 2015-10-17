@@ -45,6 +45,14 @@ public class LevelMap {
 		}
 		return foreground.getCell((int)x / tile_width, (int)y / tile_width) != null;
 	}
+	
+	public boolean blocked(Vector2 start, Vector2 end) {
+		if (blocked(end)) {
+			return false ;
+		}
+		
+		return false ;
+	}
 
 	
 	public float getCost(int sx, int sy, int tx, int ty) {
