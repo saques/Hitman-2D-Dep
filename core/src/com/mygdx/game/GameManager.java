@@ -28,9 +28,9 @@ public class GameManager {
 	CharacterView player_view;
 	Set<NPC> goon_set = new HashSet<NPC>();
 	Set<CharacterView> goon_view_set = new HashSet<CharacterView>();
-	
 	PostOffice postOffice = PostOffice.getInstance();
-
+	NoiseHandler noiseHandler ;
+	
 	public GameManager(TiledMap tiled_map,int width,int height,int tile_width,int goons){
 		LevelMap map = new LevelMap(width,height, tile_width,tiled_map);
 		PathFinder path_finder = new PathFinder(map, MAX_SEARCH);
@@ -46,7 +46,7 @@ public class GameManager {
 		player = new Player(new Rectangle(50,50,18,13),map);
 		player_manager = new PlayerManager(player) ;
 		player_view.setPlayer(player) ;
-		NoiseHandler noiseHandler = new NoiseHandler(goon_set, path_finder);
+		noiseHandler = new NoiseHandler(goon_set, path_finder);
 		postOffice.setNoiseHandler(noiseHandler);
 	}
 	
@@ -59,6 +59,7 @@ public class GameManager {
 		}
 		player_manager.manage();
 		player.update();
+		noiseHandler.handle();
 		for (NPC g : goon_set){
 			g.update();
 		}

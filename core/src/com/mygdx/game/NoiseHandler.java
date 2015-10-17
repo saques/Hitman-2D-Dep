@@ -35,9 +35,12 @@ public class NoiseHandler implements Handler{
 			warnAll(noise);
 		}
 		for (NPC npc : npc_set){
-			Path noisePath = pathFinder.findPath(npc, npc.getPosition(), noise.getSource());
-			if (noisePath!= null) {
-				npc.addToContext(noise);
+//			Path noisePath = pathFinder.findPath(npc, npc.getPosition(), noise.getSource());
+//			if (noisePath!= null) {
+//				npc.addToContext(noise);
+//			}
+			if (noise.getSource().dst(npc.getPosition())<=noise.getRange()){
+				npc.moveTo(noise.getSource()) ;
 			}
 		}
 	}
