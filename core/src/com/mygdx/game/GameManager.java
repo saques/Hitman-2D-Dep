@@ -43,10 +43,6 @@ public class GameManager {
 			goon_view_set.add(goon_view);
 			goon_set.add(goon);
 		}
-		/**
-		 * Cambiar esto para que Character no tenga que recibir el Modelo:
-		 * El Modelo en Character solo se usa en una linea, en el metodo update()
-		 */
 		player_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
 		player = new Player(new Rectangle(50,50,18,13),map);
 		player_handler = new PlayerManager(player) ;
