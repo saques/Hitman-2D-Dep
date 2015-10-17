@@ -3,12 +3,12 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 
 public class PlayerHandler {
-	private ControlHandler control;
+	private ControlProcessor control;
 	private Player player;
 	
 	public PlayerHandler(Player player){
 		this.player = player ;
-		control = new ControlHandler() ;
+		control = new ControlProcessor() ;
 		Gdx.input.setInputProcessor(control);
 	}
 	

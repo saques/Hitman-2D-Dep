@@ -11,7 +11,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 
-class ControlHandler implements InputProcessor {
+class ControlProcessor implements InputProcessor {
 	private static int MOVE_LEFT = 0;
 	private static int MOVE_UP = 1;
 	private static int MOVE_RIGHT = 2;
