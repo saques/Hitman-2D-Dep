@@ -15,9 +15,9 @@ public class GameHandler {
 	Goon goon;
 	CharacterView goon_view;
 	PathFinder path_finder;
-	ControlHandler control;
 	
 	Player player;
+	PlayerHandler player_handler ;
 	CharacterView player_view;
 	Set<Goon> goon_set = new HashSet<Goon>();
 	Set<CharacterView> goon_view_set = new HashSet<CharacterView>();
@@ -33,16 +33,18 @@ public class GameHandler {
 			goon_view_set.add(goon_view);
 			goon_set.add(goon);
 		}
-		// cambiar esto para que player no tenga que recibir el modelo
+		/**
+		 * Cambiar esto para que Character no tenga que recibir el Modelo:
+		 * El Modelo en Character solo se usa en una linea, en el metodo update()
+		 */
 		player_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
 		player = new Player(new Rectangle(50,50,18,13),map, player_view);
+		player_handler = new PlayerHandler(player) ;
 		player_view.setPlayer(player) ;
-		control = new ControlHandler(player,goon_set,map);
-		Gdx.input.setInputProcessor(control);
 	}
 	
 	public void updateModel(){
-		control.update(); 
+		player_handler.handle();
 		player.update();
 		for (Goon g : goon_set){
 			g.update();

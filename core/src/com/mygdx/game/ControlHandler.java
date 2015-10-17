@@ -23,21 +23,13 @@ class ControlHandler implements InputProcessor {
 	private boolean move_up;
 	private boolean move_down;
 	private boolean move_run;
+	private float x ;
+	private float y ;
 	private int mouse_x;
 	private int mouse_y;
 	private boolean mouse_click;
-	private Player player;
-	private LevelMap map;
-	private Set<Goon> goonSet;
 	
-	public ControlHandler(Player player, Set<Goon> goonSet, LevelMap map){
-		this.player = player;
-		this.map = map;
-		this.goonSet = goonSet;
-	}
 	public void update(){
-		float x,y;
-    	x=y=0f;
 		if (move_left)
 			x = -1;
 		if (move_right)
@@ -50,20 +42,14 @@ class ControlHandler implements InputProcessor {
 			x *= SIN45;
 			y *= SIN45;
         }
-		if ((x!=0 || y!=0)&& player!= null){
-        	player.move(new Vector2(x,y), move_run);
-		}
-		else {
-			player.stopMoving();
-		}
-		if (mouse_click){
-			mouse_click = false;
-			for(Goon g: goonSet)
-				g.moveTo(new Vector2(mouse_x,mouse_y));
-		}
 	}
 	
-	
+	public PlayerMovement getPlayerMovement() {
+		PlayerMovement ans = new PlayerMovement(new Vector2(x,y).nor(),move_run) ;
+		this.x = 0f;
+		this.y = 0f;
+		return ans ;
+	}
 	
 	
 	@Override
