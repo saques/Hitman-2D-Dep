@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Player extends Character {
 
 	
-	public Player(Rectangle hitBox, LevelMap map, Model model) {
+	public Player(Rectangle hitBox, LevelMap map, CharacterView model) {
 		super(hitBox, map, model);
 	}
 

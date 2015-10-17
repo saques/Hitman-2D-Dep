@@ -29,8 +29,7 @@ public class NoiseHandler {
 		for (NPC npc : npc_set){
 			if (npc.getPosition().dst(noise.getSource())<= noise.getRange()){
 				if (!noise.getEmitter().getClass().isInstance(npc)) {
-					// change
-					npc.moveTo(noise.getSource(),false);
+					npc.moveTo(noise.getSource());
 				}
 			}
 		}
@@ -44,8 +43,7 @@ public class NoiseHandler {
 	 */
 	private void warnAll(Noise noise){
 		for (NPC npc : npc_set){
-			// change
-			npc.moveTo(noise.getSource(), false);
+			npc.moveTo(noise.getSource());
 		}
 	}
 }
