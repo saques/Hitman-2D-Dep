@@ -95,34 +95,28 @@ public abstract class NPC extends Character {
 	 * @return true si el jugador es visible, false si no
 	 */
 	
-	public boolean isPlayerinSight(Vector2 playerPosition) {
+	public boolean canSee(Vector2 playerPosition) {
 		Vector2 directionN ;
 		Vector2 directionS ;
 		Vector2 goonPosition = new Vector2((float)this.hitBox.x,(float)this.hitBox.y) ;
 		Vector2 goonDirection = this.direction ;
+		if (playerPosition.dst2(goonPosition)> VISUAL_RANGE){
+			return false ;
+		}
+		if (map.isValid(goonPosition, playerPosition)) {
+			return false ;
+		}
 		float dirAngle = goonDirection.angle() ;
 		float nAngle = dirAngle + VISUAL_ANGLE/2 ;
 		float x,y ;
 		directionN = new Vector2(x=(float)Math.cos(nAngle),y=(float)Math.sin(nAngle)) ;
 		directionS = new Vector2(y,x) ;
-		
-		if (playerPosition.dst2(goonPosition)> VISUAL_RANGE){
-			return false ;
-		}
-		/**
-		 * TODO :
-		 * Implementar en LevelMap un metodo para
-		 * ver hay obstaculos entre dos posiciones dadas
-		 */
-		if (map.blocked(goonPosition, playerPosition)) {
-			return false ;
-		}
 		Vector2 relativeDirection = playerPosition.sub(goonPosition).nor() ;
 		float z ;
-		if ( (z = relativeDirection.angle()) < directionS.angle() || z >directionN.angle() ) {
-			return false ;
+		if ( (z = relativeDirection.angle()) >= directionS.angle() && z <=directionN.angle() ) {
+			return true;
 		}
-		return true ;
+		return false ;
 	}
 	
 	/*

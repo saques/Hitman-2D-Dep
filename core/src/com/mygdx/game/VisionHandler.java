@@ -21,7 +21,7 @@ public class VisionHandler implements Handler {
 	}
 	public void handle() {
 		for (NPC npc : npc_set){
-			if(npc.isPlayerinSight(player.getPosition())){
+			if(npc.canSee(player.getPosition())){
 				npc.addPlayertoContext(player.getPosition());
 			}
 		}
