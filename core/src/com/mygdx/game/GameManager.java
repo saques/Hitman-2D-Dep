@@ -30,6 +30,7 @@ public class GameManager {
 	Set<CharacterView> goon_view_set = new HashSet<CharacterView>();
 	PostOffice postOffice = PostOffice.getInstance();
 	NoiseHandler noiseHandler ;
+	VisionHandler visionHandler ;
 	
 	public GameManager(TiledMap tiled_map,int width,int height,int tile_width,int goons){
 		LevelMap map = new LevelMap(width,height, tile_width,tiled_map);
@@ -48,6 +49,7 @@ public class GameManager {
 		player_view.setPlayer(player) ;
 		noiseHandler = new NoiseHandler(goon_set, path_finder);
 		postOffice.setNoiseHandler(noiseHandler);
+		visionHandler = new VisionHandler(goon_set,player) ;
 	}
 	
 	public void updateModel(){
@@ -60,6 +62,7 @@ public class GameManager {
 		player_manager.manage();
 		player.update();
 		noiseHandler.handle();
+		visionHandler.handle();
 		for (NPC g : goon_set){
 			g.update();
 		}

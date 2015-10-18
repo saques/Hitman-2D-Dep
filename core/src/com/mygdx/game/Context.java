@@ -54,11 +54,13 @@ public class Context {
 		noiseSet.add(noise);
 		System.out.println("BANG!!!");
 	}
+	
 	/*
 	 * Agrega la posicion del jugador. Deberia ser un add(). TODO
 	 */
 	public void setPlayerPosition(Vector2 playerPosition) {
-		this.playerPosition = playerPosition ;
+//		this.playerPosition = playerPosition ;
+		System.out.println("HELLO!!");
 	}
 	/*
 	 * Vacia el contexto. deberia ser llamado por el update del NPC.

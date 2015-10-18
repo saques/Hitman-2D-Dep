@@ -15,7 +15,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class NPC extends Character {
 	private static final float VISUAL_RANGE = 100f ;
-	private static final float VISUAL_ANGLE = 45f ;
+	private static final float VISUAL_ANGLE = 90f ;
 	protected static final float EPSILON = 2f;
 	protected  Path currentPath;
 	protected Step finalStep;
@@ -96,25 +96,19 @@ public abstract class NPC extends Character {
 	 */
 	
 	public boolean canSee(Vector2 playerPosition) {
-		Vector2 directionN ;
-		Vector2 directionS ;
 		Vector2 goonPosition = new Vector2((float)this.hitBox.x,(float)this.hitBox.y) ;
 		Vector2 goonDirection = this.direction ;
 		if (playerPosition.dst2(goonPosition)> VISUAL_RANGE){
 			return false ;
 		}
-		if (map.isValid(goonPosition, playerPosition)) {
+		if (!map.isValid(goonPosition, playerPosition)) {
 			return false ;
 		}
 		float dirAngle = goonDirection.angle() ;
-		float nAngle = dirAngle + VISUAL_ANGLE/2 ;
-		float x,y ;
-		directionN = new Vector2(x=(float)Math.cos(nAngle),y=(float)Math.sin(nAngle)) ;
-		directionS = new Vector2(y,x) ;
 		Vector2 relativeDirection = playerPosition.sub(goonPosition).nor() ;
 		float z ;
-		if ( (z = relativeDirection.angle()) >= directionS.angle() && z <=directionN.angle() ) {
-			return true;
+		if ( (z= relativeDirection.angle())>=dirAngle-VISUAL_ANGLE/2 && z <= dirAngle+VISUAL_ANGLE/2) {
+			return true ;
 		}
 		return false ;
 	}

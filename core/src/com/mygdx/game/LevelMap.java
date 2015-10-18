@@ -88,7 +88,6 @@ public class LevelMap {
 	/*
 	 * Lo mismo que lo anterior para un segmento.
 	 */
-	
 	public boolean isValid(Vector2 startPosition, Vector2 finalPosition ) {
 		for (int x = 0; x < widthInTiles; x++ ) {
 			for (int y = 0; y < heightInTiles; y++) {
