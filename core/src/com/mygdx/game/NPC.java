@@ -8,6 +8,11 @@ package com.mygdx.game;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Personajes no controlados por el jugador. Debem implementar comportamientos diferentes
+ * segun el contexto del juego. Ademas, deben ser capaces de encontrar el camino entre dos 
+ * puntos en el mapa.
+ */
 public abstract class NPC extends Character {
 	private static final float VISUAL_RANGE = 100f ;
 	private static final float VISUAL_ANGLE = 45f ;
@@ -23,11 +28,18 @@ public abstract class NPC extends Character {
 		super(hitBox, map);
 		context = new Context();
 	}
+	/*
+	 * Setea el pathFinder para el movimento no lineal.
+	 * @param pathFinder
+	 */
 	public void setAStarPathFinder(AStarPathFinder pathFinder){
 		this.aStarPathFinder = pathFinder;
 	}
 	
-	
+	/*
+	 * Setea el camino para llegar a un punto en el mapa, si es posible.
+	 * @param position
+	 */
 	public boolean moveTo(Vector2 position) {
 		if (finalStep != null && position.epsilonEquals(finalStep.getPosition(), EPSILON )){
 			return false;
@@ -45,6 +57,10 @@ public abstract class NPC extends Character {
 		return false;
 	}
 	
+	/*
+	 * Actualiza el estado del NPC
+	 * TODO hay una version mas nueva en el otro repositorio.
+	 */
 	@Override
 	public void update() {
 		if (!isMoving || currentPath == null){
@@ -109,6 +125,11 @@ public abstract class NPC extends Character {
 		return true ;
 	}
 	
+	/*
+	 * Anade un mensaje al contexsto. TODO en realidad, el NPC deberia mandar cualquier mensaje,
+	 * sin importar si es un Noise o de cualquier otro tipo. El contexto deberia saber manejar
+	 * distintos tipos de mensajes. Por eso, deberia haber un unico metodo addToContext(Message m).
+	 */
 	public void addNoisetoContext(Noise n){
 		context.add(n);
 	}

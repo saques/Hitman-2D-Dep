@@ -9,6 +9,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Clase abstracta para todos los personajes del juego, incluyendo el jugador 
+ * y los npc. Implementa Movable.
+ */
 public abstract class Character implements Movable {
 	protected static final float DIRECTIONAL_EPSILON = 0.05f;
 	protected static final float NORMAL_SPEED = 60f;
@@ -26,23 +30,39 @@ public abstract class Character implements Movable {
 		this.hitBox = hitBox;
 		this.running = false;
 	}
+	/*
+	 * Devulelve si el personaje se esta moviendo.
+	 */
 	public boolean isMoving(){
 		return isMoving;
 	}
+	/*
+	 * Devuelve la posicion del personaje como la posicion de su hit box.
+	 * Notese como funciona el metodo getPosition() de rectangle para
+	 * que devuelva un Vector2.
+	 */
 	@Override
 	public Vector2 getPosition() {
 		return hitBox.getPosition(new Vector2());
 	}
-
+	
+	/*
+	 * Devuelve la direccion a la que se esta moviendo el personaje. En 
+	 * una revision futura, conviene separar entre lookDirection y moveDirection.
+	 */
 	@Override
 	public Vector2 getDirection() {
 		return new Vector2(direction);
 	}
-
+	
+	/*
+	 * Setea direction. En una revision futura deberia setear moveDirection.
+	 * Running no se modifica.
+	 * @param direction
+	 */
 	@Override
 	public boolean move(Vector2 direction) {
 		if (direction.isZero()){
-			
 			return false;
 		}
 		this.direction.set(direction.nor());
@@ -50,22 +70,38 @@ public abstract class Character implements Movable {
 		
 		return true;
 	}
+	/*
+	 * Idem anterior, pero modifica running por un nuevo valor.
+	 * @param direction
+	 * @param running
+	 */
 	public boolean move(Vector2 direction, boolean running) {
 		move(direction);
 		this.running = running;
 		return true;
 	}
-
+	
+	/*
+	 * Devuelve el ancho del hit box.
+	 */
 	@Override
 	public float getWidth() {
 		return hitBox.getWidth();
 	}
 	
+	/*
+	 * Devuleve el alto del hit box.
+	 */
 	@Override
 	public float getHeight() {
 		return hitBox.getHeight();
 	}
 	
+	/*
+	 * Update del personaje. Por ahora solo llama al metodo moveAlong.
+	 * En un futuro deberia llamar a todos los send de los mensajes que el 
+	 * personaje quiera mandar (bullets, noise, dialog, etc..)
+	 */
 	@Override
 	public void update(){
 		if (isMoving) {
@@ -121,6 +157,8 @@ public abstract class Character implements Movable {
 	/*
 	 * Metodo privado que calcula un Rectangle segun una direccion determinada, una 
 	 * posicion inicial y una velocidad. Usado por el metodo moveAlong.
+	 * @param direction
+	 * @param speed
 	 */
 	
 	private Rectangle getDirectionalHitBox(Vector2 direction, float speed) {

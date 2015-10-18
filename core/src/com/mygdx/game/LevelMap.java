@@ -5,6 +5,11 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Representacion en el modelo del mapa del nivel. Esta implementado como un array de Rectangles,
+ * que representan los obstaculos por los que los personajes no pueden navegar.
+ * TODO revisar nueva implementacion
+ */
 public class LevelMap {
 	
 	private int width;
@@ -13,6 +18,12 @@ public class LevelMap {
 	private int tile_width;
 	TiledMapTileLayer foreground;
 	
+	/*
+	 * El constructor necesita el TiledMap del cual se basa, asi como el
+	 * tileWidth que representa los Rectangulos navegables. No es necesario
+	 * que el tileWidth del tiledMap coincida con el tileWidth del LevelMap.
+	 * //TODO revisar nueva implementacion
+	 */
 	public LevelMap(int width, int height,int tile_width, TiledMap tiled_map){
 		this.width = width;
 		this.height = height;
@@ -21,20 +32,32 @@ public class LevelMap {
 		this.foreground =  (TiledMapTileLayer)tiled_map.getLayers().get(1);
 		//level_array[5][10] = true;
 	}
+	/*
+	 * Devuelve el ancho del tile segun el LevelMap
+	 */
 	public int getTileWidth(){
 		return tile_width;
 	}
 	
+	/*
+	 * Devuleve el ancho del mapa en tiles
+	 */
 	public int getWidthInTiles() {
 		return width / tile_width;
 	}
-
-	
+	/*
+	 * Devuelve en alto del mapa en tiles.
+	 */
 	public int getHeightInTiles() {
 		return height /tile_width;
 	}
-
-	
+	/*
+	 * Devuleve si la posicion esta bloqueada. 
+	 * //TODO deberia recibir un Movable que deberia entender los permisos
+	 * de paso que tiene (Noise podria ser un movable que pueda atravesar paredes
+	 * mientras que Bullet no) 
+	 * @param position 
+	 */
 	public boolean blocked( Vector2 position) {
 		float x,y;
 		x = position.x;
@@ -54,7 +77,15 @@ public class LevelMap {
 		return false ;
 	}
 
-	
+	/*
+	 * Devuelve el costo de un movimiento desde un tile al otro. En nuestro caso,
+	 * solo existe un unico costo, 1.
+	 * @param sx - Posicion en x del origen
+	 * @param sy - posicion en y del origen
+	 * @param tx - posicion en x del destino
+	 * @param ty - posicion en y del destino
+	 * TODO cambiar a Vector2 o que directamente se fije en el tile. 
+	 */
 	public float getCost(int sx, int sy, int tx, int ty) {
 		if (sx != tx && sy != ty){
 			return 1.41f;
@@ -62,11 +93,15 @@ public class LevelMap {
 		return 1f;
 	}
 
-
+	
 	public int tilePosition(int x){
 		return x / tile_width;
 	}
 	
+	/*
+	 * Detecta las colisiones de un hit box con el mapa.
+	 * @param hit_box
+	 */
 	public boolean isValid(Rectangle hit_box) {
 		int max_height =(int) (hit_box.getY() + hit_box.getHeight());
 		int max_width = (int) (hit_box.getX() + hit_box.getWidth());

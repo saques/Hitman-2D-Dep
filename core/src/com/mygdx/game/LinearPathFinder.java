@@ -2,6 +2,9 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * TODO existe una implementacion mas nueva en el otro repositorio.
+ */
 public class LinearPathFinder implements PathFinder {
 	private LevelMap map;
 	

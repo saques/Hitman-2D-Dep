@@ -7,7 +7,10 @@ package com.mygdx.game;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Clase Singleton que maneja la distrubucion de los mensajes a sus respectivos
+ * handlers.
+ */
 public class PostOffice {
 	private static final PostOffice INSTANCE = new PostOffice();
 	public static final int NOISE = 0;

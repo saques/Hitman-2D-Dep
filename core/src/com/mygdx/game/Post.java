@@ -5,6 +5,10 @@
 
 package com.mygdx.game;
 
+/*
+ * Representa un mensaje a resolver por la postOffice, segun su tipo y un tiempo
+ * de espera determinado.
+ */
 public class Post {
 	private Integer type;
 	private Timer timer;
@@ -15,15 +19,21 @@ public class Post {
 		this.timer = timer;
 		this.message = message;
 	}
-	
+	/*
+	 * Devuelve el tipo del mensaje. Ver PostOffice para ver los posibles valores
+	 */
 	public Integer getType() {
 		return type;
 	}
-	
+	/*
+	 * Verifica si ya paso el tiempo de espera.
+	 */
 	public boolean checkTimer() {
 		return timer.isOver();
 	}
-	
+	/*
+	 * Devuelve el mensaje.
+	 */
 	public Message getMessage() {
 		return message;
 	}

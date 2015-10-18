@@ -7,6 +7,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+/*
+ * Implementacion del View de los Character segun el patron MVC.
+ * Dibuja en pantalla el sprite del personaje.
+ */
 public class CharacterView {
 	Character character;
 	SpriteBatch batch;
@@ -29,9 +33,17 @@ public class CharacterView {
 		walkAnimation = new Animation(0.025f,walkFrames);
 		stateTime = 0f;
 	}
+	/*
+	 * Setea una referencia al personaje. En una revision futura, deberia setear a un CharacterController,
+	 * que represente al controller del player segun el patron MVC.
+	 * @param character
+	 */
 	public void setPlayer(Character character){
 		this.character = character;
 	}
+	/*
+	 * Dibuja el sprite en pantalla.
+	 */
 	public void draw(){
 		if (character.isMoving){
 			update() ;
@@ -42,6 +54,9 @@ public class CharacterView {
 		batch.draw(currentFrame, character.getPosition().x, character.getPosition().y, 9f, 6.5f,18f,13f, 1f,1f, rotation);
 		batch.end();
 	}
+	/*
+	 * Actualiza la animacion segun el tiempo que paso desde el ultimo render.
+	 */
 	public void update(){
 		 stateTime += Gdx.graphics.getDeltaTime();
 	}

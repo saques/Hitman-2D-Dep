@@ -9,6 +9,9 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Interfaz para los objetos que se puedan mover, como los Character o los Bullets.
+ */
 public interface Movable {
 	Vector2 getPosition();
 	Vector2 getDirection();

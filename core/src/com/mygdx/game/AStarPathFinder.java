@@ -5,6 +5,11 @@ import java.util.Collections;
 
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Pathfinder que usa el algoritmo de A*. Implementa PathFinder
+ * @author traies
+ */
+
 public class AStarPathFinder implements PathFinder {
 	private ArrayList<Node> closed = new ArrayList<Node>();
 	private ArrayList<Node> open = new ArrayList<Node>();
@@ -24,6 +29,7 @@ public class AStarPathFinder implements PathFinder {
 		
 	}
 	
+	@Override
 	public Path findPath(Movable movable, Vector2 startPosition, Vector2 finalPosition) {
 		
 		int sx = Math.round(startPosition.x) / map.getTileWidth();
@@ -118,6 +124,12 @@ public class AStarPathFinder implements PathFinder {
 		return Math.abs(xp - x) + Math.abs(yp -y);
 //		return 0;
 	}
+	/*
+	 * Limpia los nodos para que no genere conflictos con la ejecucion pasada.
+	 * Conviene eliminar el metodo en una futura revision y que el algoritmo mismo
+	 * los vaya eliminando a medida que no los necesita mas, para no tener que recorrer
+	 * el array entero.
+	 */
 	private void cleanNodes(){
 		for(Node[] arr:nodes){
 			for(Node n: arr){
@@ -125,6 +137,10 @@ public class AStarPathFinder implements PathFinder {
 			}
 		}
 	}
+	/*
+	 * Clase privada. Modela los nodos posibles que representan el mapa navegable. El compareTo
+	 * funciona con el costo.
+	 */
 	private class Node implements Comparable <Node>{
 		private int x;
 		private int y;

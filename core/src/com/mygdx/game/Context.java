@@ -9,7 +9,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.badlogic.gdx.math.Vector2;
-
+/*
+ * Maneja el contexto sobre el cual los Behaviours de los npc deciden sus
+ * acciones, incluyendo informacion como sonidos y la posicion del jugador.
+ */
 public class Context {
 	private Set<Noise> noiseSet;
 	private Vector2 playerPosition ;
@@ -17,6 +20,9 @@ public class Context {
 	public Context() {
 		this.noiseSet = new HashSet<Noise>();
 	}
+	/*
+	 * Devuelve si el npc puede ver al jugador.
+	 */
 	public boolean playerIsVisible() {
 		//TODO
 		return true;
@@ -33,19 +39,30 @@ public class Context {
 		}
 		return maxNoise;
 	}
+	/*
+	 * Devuleve si hay algun sonido en el contexto.
+	 */
 	public boolean hearNoise() {
 		//TODO
 		return false;
 	}
+	/*
+	 * Agrega un sonido al contexto.
+	 */
 	public void add(Noise noise) {
 		//TODO
 		noiseSet.add(noise);
 		System.out.println("BANG!!!");
 	}
-	
+	/*
+	 * Agrega la posicion del jugador. Deberia ser un add(). TODO
+	 */
 	public void setPlayerPosition(Vector2 playerPosition) {
 		this.playerPosition = playerPosition ;
 	}
+	/*
+	 * Vacia el contexto. deberia ser llamado por el update del NPC.
+	 */
 	public void flush() {
 		noiseSet = new HashSet<Noise>();
 		return;

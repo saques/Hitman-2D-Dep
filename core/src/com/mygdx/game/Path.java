@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
 
+/*
+ * Guarda informacion de un camino como una serie de posiciones(pasos). 
+ * Esta implementado como un stack, usando ArrayList.
+ */
 public class Path {
 	public ArrayList<Step> steps = new ArrayList<Step>();
 	private int counter = 0;
@@ -12,18 +16,24 @@ public class Path {
 		//TODO
 		return 0;
 	}
+	/*
+	 * Devuelve el proximo paso.
+	 */
 	public Step nextStep(){
 		return steps.get(--counter);
 	}
+	/*
+	 * Devuelve si hay un proximo paso.
+	 */
 	public boolean hasNextStep(){
 		if (counter > 0)
 			return true;
 		return false;
 	}
-	
-	public void appendStep(int x, int y){
-		//TODO
-	}
+	/*
+	 * Agrega un paso.
+	 * @param stepPosition
+	 */
 	public void prependStep(Vector2 stepPosition){
 		steps.add(counter,new Step(stepPosition));
 		counter++;

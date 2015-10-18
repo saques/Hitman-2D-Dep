@@ -5,6 +5,10 @@
 
 package com.mygdx.game;
 
+/*
+ * Excepcion que deberian tirar los handlers si los mensajes que reciben no son los que
+ * pueden manejar.s
+ */
 public class WrongMessageException extends Exception {
 
 	/**
