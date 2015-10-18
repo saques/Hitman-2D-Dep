@@ -14,8 +14,8 @@ import com.badlogic.gdx.math.Vector2;
  * puntos en el mapa.
  */
 public abstract class NPC extends Character {
-	private static final float VISUAL_RANGE = 100f ;
-	private static final float VISUAL_ANGLE = 90f ;
+	private static final float VISUAL_RANGE = 5000f ;
+	private static final float VISUAL_ANGLE = 130f ;
 	protected static final float EPSILON = 2f;
 	protected  Path currentPath;
 	protected Step finalStep;
@@ -106,8 +106,14 @@ public abstract class NPC extends Character {
 		}
 		float dirAngle = goonDirection.angle() ;
 		Vector2 relativeDirection = playerPosition.sub(goonPosition).nor() ;
-		float z ;
-		if ( (z= relativeDirection.angle())>=dirAngle-VISUAL_ANGLE/2 && z <= dirAngle+VISUAL_ANGLE/2) {
+		float z = relativeDirection.angle();
+		if (dirAngle > 180f){
+			dirAngle = -180f + (dirAngle-180f) ;
+		}
+		if (z > 180f){
+			z = -180f + (z-180f) ;
+		}
+		if ( z>=dirAngle-VISUAL_ANGLE/2 && z <= dirAngle+VISUAL_ANGLE/2) {
 			return true ;
 		}
 		return false ;
