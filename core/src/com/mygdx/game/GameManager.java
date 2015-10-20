@@ -23,13 +23,14 @@ public class GameManager {
 	Goon goon;
 	CharacterView goon_view;
 	AStarPathFinder path_finder;
+	LinearPathFinder linearPathFinder;
 	Player player;
 	PlayerManager player_manager ;
 	CharacterView player_view;
 	Set<NPC> goon_set = new HashSet<NPC>();
 	Set<CharacterView> goon_view_set = new HashSet<CharacterView>();
-	PostOffice postOffice = PostOffice.getInstance();
-	NoiseHandler noiseHandler ;
+	MessageManager postOffice = MessageManager.getInstance();
+	NoiseFilter noiseFilter ;
 	VisionHandler visionHandler ;
 	
 	public GameManager(TiledMap tiled_map,int width,int height,int tile_width,int goons){
@@ -39,6 +40,7 @@ public class GameManager {
 			goon_view = new CharacterView("assets/hitman_walk.png", 18, 13, 15);
 			goon = new Goon(new Rectangle(40,40, 18,13),map);
 			goon.setAStarPathFinder(path_finder);
+			postOffice.addListener(goon, postOffice.NOISE);
 			goon_view.setPlayer(goon);
 			goon_view_set.add(goon_view);
 			goon_set.add(goon);
@@ -47,21 +49,21 @@ public class GameManager {
 		player = new Player(new Rectangle(50,50,18,13),map);
 		player_manager = new PlayerManager(player) ;
 		player_view.setPlayer(player) ;
-		noiseHandler = new NoiseHandler(goon_set, path_finder);
-		postOffice.setNoiseHandler(noiseHandler);
+		linearPathFinder = new LinearPathFinder(map);
+		noiseFilter = new NoiseFilter( linearPathFinder);
+		postOffice.addFilter(noiseFilter, MessageManager.NOISE);
 		visionHandler = new VisionHandler(goon_set,player) ;
 	}
 	
 	public void updateModel(){
 		try{
-			postOffice.manage();
+			postOffice.update();
 		}
 		catch(WrongMessageException e){
 			System.out.println("Wrong Message");
 		}
 		player_manager.manage();
 		player.update();
-		noiseHandler.handle();
 		visionHandler.handle();
 		for (NPC g : goon_set){
 			g.update();

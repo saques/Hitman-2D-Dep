@@ -12,9 +12,14 @@ public class Path {
 	public ArrayList<Step> steps = new ArrayList<Step>();
 	private int counter = 0;
 	
-	public int getLength(){
-		//TODO
-		return 0;
+	public float getLength(){
+		float length = 0;
+		for (int i = 0; i < counter-1 ; i++) {
+			Vector2 posa = steps.get(i).getPosition();
+			Vector2 posb = steps.get(i+1).getPosition();
+			length += posa.dst(posb);
+		}
+		return length;
 	}
 	/*
 	 * Devuelve el proximo paso.

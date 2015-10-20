@@ -25,8 +25,8 @@ public class Noise implements Message{
 		this.isShot= isShot ;
 	}
 	
-	public Vector2 getSource(){
-		return this.source;
+	public Vector2 getPosition(){
+		return new Vector2(this.source);
 	}
 	
 	public double getRange(){

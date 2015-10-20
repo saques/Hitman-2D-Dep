@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
  * segun el contexto del juego. Ademas, deben ser capaces de encontrar el camino entre dos 
  * puntos en el mapa.
  */
-public abstract class NPC extends Character {
+public abstract class NPC extends Character implements Listener{
 	private static final float VISUAL_RANGE = 5000f ;
 	private static final float VISUAL_ANGLE = 130f ;
 	protected static final float EPSILON = 2f;
@@ -127,7 +127,12 @@ public abstract class NPC extends Character {
 	public void addNoisetoContext(Noise n){
 		context.add(n);
 	}
-	
+	@Override
+	public boolean handleMessage(Message m) {
+		context.add((Noise)m);
+		System.out.println("bang!!");
+		return true;
+	}
 	public void addPlayertoContext(Vector2 playerPosition) {
 		context.setPlayerPosition(playerPosition);
 	}

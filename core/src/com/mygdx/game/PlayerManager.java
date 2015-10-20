@@ -11,13 +11,13 @@ import com.badlogic.gdx.math.Vector2;
 public class PlayerManager {
 	private ControlProcessor control;
 	private Player player;
-	private PostOffice postOffice ;
+	private MessageManager postOffice ;
 	
 	public PlayerManager(Player player){
 		this.player = player ;
 		control = new ControlProcessor() ;
 		Gdx.input.setInputProcessor(control);
-		postOffice = PostOffice.getInstance() ;
+		postOffice = MessageManager.getInstance() ;
 	}
 	
 	public void manage() {
@@ -33,7 +33,7 @@ public class PlayerManager {
 		Vector2 noisePosition = control.getMouseClick() ;
 		if (noisePosition!=null){
 			Message message = new Noise(noisePosition,100, true);
-			postOffice.post(new Post(PostOffice.NOISE, new Timer(0), message));
+			postOffice.dispatchMessage(MessageManager.NOISE,  message, 0);
 		}
 	}
 }

@@ -10,7 +10,7 @@ import java.util.Set;
  *
  */
 
-public class VisionHandler implements Handler {
+public class VisionHandler {
 
 	private Set<NPC> npc_set ;
 	private Player player ;
@@ -27,13 +27,6 @@ public class VisionHandler implements Handler {
 		}
 		
 	}
-	/**
-	 * Esto no tiene sentido aca
-	 */
-	@Override
-	public void send(Message message) throws WrongMessageException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
