@@ -22,13 +22,13 @@ import com.badlogic.gdx.math.Vector2;
  * @author traies
  * @author masaques
  */
-public class GameInitializer extends ApplicationAdapter {
+public class Game extends ApplicationAdapter {
 	Texture img;
 	TiledMap tiled_map;
 	OrthographicCamera camera;
 	OrthogonalTiledMapRenderer renderer;
 	FPSLogger fps_logger;
-	GameManager game_handler ;
+	GameManager game_manager ;
 	
 	@Override
 	public void create () {
@@ -40,7 +40,7 @@ public class GameInitializer extends ApplicationAdapter {
 		tiled_map = new TmxMapLoader().load("assets/test5.tmx");
 		renderer = new OrthogonalTiledMapRenderer(tiled_map);
 		fps_logger = new FPSLogger();
-		game_handler = new GameManager(tiled_map,width,height,32,20) ;
+		game_manager = new GameManager(tiled_map,width,height,32,20) ;
 		
 	}
 
@@ -50,20 +50,11 @@ public class GameInitializer extends ApplicationAdapter {
 		fps_logger.log();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		game_handler.updateModel();
-//		if (i == 20){
-//			for (Goon g:goon_set){
-//				g.moveTo(player.getPosition());
-//			}
-//			i=0;
-//		}
-//		else{
-//			i++;
-//		}
+		game_manager.updateModel();
         camera.update();
         renderer.setView(camera);
         renderer.render();
-        game_handler.updateView();
+        game_manager.updateView();
 
         
 	}

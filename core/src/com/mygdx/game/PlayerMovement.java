@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class PlayerMovement {
 	/**
-	 * Deberian haber mas estados, tales como ver si se emitio un sonido
+	 * TODO Deberian haber mas estados, tales como ver si se emitio un sonido
 	 * o un disparo, etc
 	 */
 	private boolean running ;
