@@ -63,17 +63,6 @@ public class LevelScreen implements Screen{
 		 * game.batch.end();
 		 * 
 		 */
-		
-		
-//		if (i == 20){
-//			for (Goon g:goon_set){
-//				g.moveTo(player.getPosition());
-//			}
-//			i=0;
-//		}
-//		else{
-//			i++;
-//		}
         camera.update();
         renderer.setView(camera);
         renderer.render();

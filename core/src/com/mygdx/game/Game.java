@@ -50,10 +50,10 @@ public class Game extends ApplicationAdapter {
 		fps_logger.log();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		game_manager.updateModel();
         camera.update();
         renderer.setView(camera);
         renderer.render();
+        game_manager.updateModel();
         game_manager.updateView();
 
         

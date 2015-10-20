@@ -15,30 +15,21 @@ import java.util.Set;
  */
 
 public class NoiseFilter implements MessageFilter<Noise>{
-	
-	private PathFinder pathFinder;
-	
-	public NoiseFilter(PathFinder pathFinder){
-		this.pathFinder = pathFinder;
-	}
 	/*
 	 * Este metodo filtra los npc que escuchan el sonido segun su proximidad al sonido.
 	 * @param Noise
 	 * @param listeners
 	 */
-	
-	
 	@Override
 	public Set<Listener> filter (Noise noise, Set<Listener> listeners) {
 		if (listeners == null) {
-			return listeners;
+			throw new IllegalArgumentException();
 		}
 		
 		Set<Listener> removeSet = new HashSet<Listener>();
 		for (Listener l : listeners){
 			NPC npc = (NPC)l;
-			Path path = pathFinder.findPath(null, npc.getPosition() , noise.getPosition());
-			if (path == null || path.getLength() > noise.getRange()) {
+			if (npc.getPosition().dst(noise.getPosition()) > noise.getRange()) {
 				removeSet.add(l);
 			}
 		}
