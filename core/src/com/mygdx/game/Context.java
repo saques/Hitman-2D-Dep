@@ -15,7 +15,9 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Context {
 	private Set<Noise> noiseSet;
-	private Vector2 playerPosition ;
+	private Vector2 playerPosition;
+	private Vector2 npcPosition;
+	private boolean isMoving;
 	
 	public Context() {
 		this.noiseSet = new HashSet<Noise>();
@@ -24,8 +26,7 @@ public class Context {
 	 * Devuelve si el npc puede ver al jugador.
 	 */
 	public boolean playerIsVisible() {
-		//TODO
-		return true;
+		return playerPosition != null;
 	}
 	/*
 	 * Devuelve el sonido mas fuerte, null si es vacio.
@@ -50,23 +51,38 @@ public class Context {
 	 * Agrega un sonido al contexto.
 	 */
 	public void add(Noise noise) {
-		//TODO
 		noiseSet.add(noise);
-		System.out.println("BANG!!!");
 	}
 	
 	/*
 	 * Agrega la posicion del jugador. Deberia ser un add(). TODO
 	 */
 	public void setPlayerPosition(Vector2 playerPosition) {
-//		this.playerPosition = playerPosition ;
-		System.out.println("HELLO!!");
+		this.playerPosition = playerPosition ;
+//		System.out.println("HELLO!!");
+	}
+	public Vector2 getPlayerPosition() {
+		return new Vector2(playerPosition);
+	}
+	public void setNpcPosition(Vector2 position) {
+		npcPosition = position;
+	}
+	public Vector2 getNpcPosition() {
+		return new Vector2(npcPosition);
+	}
+	public void setMoving(boolean isMoving){
+		this.isMoving = isMoving;
+	}
+	public boolean isMoving() {
+		return isMoving;
 	}
 	/*
 	 * Vacia el contexto. deberia ser llamado por el update del NPC.
 	 */
 	public void flush() {
 		noiseSet = new HashSet<Noise>();
+		playerPosition = null;
+		npcPosition = null;
 		return;
 	}
 	

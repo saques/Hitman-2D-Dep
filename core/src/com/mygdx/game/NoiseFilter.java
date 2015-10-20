@@ -14,7 +14,7 @@ import java.util.Set;
  *
  */
 
-public class NoiseFilter implements MessageFilter<Noise>{
+public class NoiseFilter implements MessageFilter{
 	
 	private PathFinder pathFinder;
 	
@@ -29,7 +29,11 @@ public class NoiseFilter implements MessageFilter<Noise>{
 	
 	
 	@Override
-	public Set<Listener> filter (Noise noise, Set<Listener> listeners) {
+	public Set<Listener> filter (Message message, Set<Listener> listeners) {
+		if (message.getClass() != Noise.class){
+			throw new WrongMessageException();
+		}
+		Noise noise = (Noise)message;
 		if (listeners == null) {
 			return listeners;
 		}

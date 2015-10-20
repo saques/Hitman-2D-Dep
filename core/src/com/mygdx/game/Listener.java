@@ -1,5 +1,5 @@
 package com.mygdx.game;
 
 public interface Listener {
-	boolean handleMessage(Message message);
+	 boolean handleMessage(Message message);
 }

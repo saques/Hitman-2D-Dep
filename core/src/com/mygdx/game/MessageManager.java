@@ -21,7 +21,7 @@ public class MessageManager {
 	public static final Integer BULLET = 1;
 	private List<Post> postList;
 	private Map<Integer, Set<Listener>> listenerMap;
-	private Map<Integer, MessageFilter<?>> filterMap;
+	private Map<Integer, MessageFilter> filterMap;
 
 	/*
 	 * Esta implementada como un Singleton (solo exite una instancia de esta clase), asi que 
@@ -30,7 +30,7 @@ public class MessageManager {
 	private MessageManager() {
 		this.postList = new ArrayList<Post>();
 		this.listenerMap = new HashMap<Integer, Set<Listener>>();
-		this.filterMap = new HashMap<Integer, MessageFilter<?>>();
+		this.filterMap = new HashMap<Integer, MessageFilter>();
 	}
 	/*
 	 * Agrega un listener a un  tipo de mensaje determinado. Si es el primer Listener de 
@@ -88,7 +88,7 @@ public class MessageManager {
 	 * @param filter
 	 * @param messageType
 	 */
-	public void addFilter(MessageFilter<?> filter, Integer messageType) {
+	public void addFilter(MessageFilter filter, Integer messageType) {
 		filterMap.put(messageType, filter);
 	}
 	
