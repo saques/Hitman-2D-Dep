@@ -61,7 +61,7 @@ public class GameManager {
 		player_manager = new PlayerManager(player) ;
 		player_view.setPlayer(player) ;
 		linearPathFinder = new LinearPathFinder(map);
-		noiseFilter = new NoiseFilter( linearPathFinder);
+		noiseFilter = new NoiseFilter();
 		postOffice.addFilter(noiseFilter, MessageManager.NOISE);
 		visionHandler = new VisionHandler(goon_set,player) ;
 	}

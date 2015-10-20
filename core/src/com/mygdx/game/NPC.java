@@ -21,7 +21,7 @@ import com.mygdx.game.Strategy;
  */
 public abstract class NPC extends Character{
 	private static final float VISUAL_RANGE = 5000f ;
-	private static final float VISUAL_ANGLE = 130f ;
+	private static final float VISUAL_ANGLE = 100f ;
 	protected static final float EPSILON = 2f;
 	protected  Path currentPath;
 	protected Step finalStep;

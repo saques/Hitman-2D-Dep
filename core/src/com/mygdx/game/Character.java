@@ -23,12 +23,14 @@ public abstract class Character implements Movable {
 	protected LevelMap map;
 	protected boolean running;
 	protected boolean isMoving = false;
+	protected float healthPoints ;
 	
 	public Character(Rectangle hitBox, LevelMap map){
 		this.direction = new Vector2();
 		this.map = map;
 		this.hitBox = hitBox;
 		this.running = false;
+		this.healthPoints = 100f ;
 	}
 	/*
 	 * Devulelve si el personaje se esta moviendo.
@@ -169,5 +171,28 @@ public abstract class Character implements Movable {
 		Rectangle currHitBox = new Rectangle(hitBox);
 		currHitBox.setPosition(position); 
 		return currHitBox;
+	}
+	
+	public float getHealthPoints() {
+		return this.healthPoints ;
+	}
+	private void setHealthPoints(float dmg){
+		if (dmg >= this.healthPoints){
+			this.healthPoints = 0 ;
+		}
+		this.healthPoints -= dmg ;
+	}
+	/**
+	 * Metodo para infligir daño en los 
+	 * Characters
+	 * @param dmg
+	 * @return true si, como resultado del daño, el Character muere. false si no
+	 */
+	public boolean dealDamage(float dmg) {
+		if (dmg >= this.getHealthPoints()) {
+			return true ;
+		}
+		this.setHealthPoints(dmg);
+		return false ;
 	}
 }
